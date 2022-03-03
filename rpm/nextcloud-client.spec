@@ -25,6 +25,7 @@ BuildRequires:  pkgconfig(Qt5Svg)
 BuildRequires:  pkgconfig
 BuildRequires:  qt5-qttools-linguist
 BuildRequires:  qt5-qmake
+BuildRequires:  libqtwebkit5-widgets-devel
 BuildRequires:  desktop-file-utils
 
 %description

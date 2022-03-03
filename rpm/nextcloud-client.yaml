@@ -35,6 +35,7 @@ PkgBR:
   - pkgconfig
   - qt5-qttools-linguist
   - qt5-qmake
+  - libqtwebkit5-widgets-devel
   # librsvg-devel
   # qt5-qtwebsockets-devel
   # qt5keychain-devel
