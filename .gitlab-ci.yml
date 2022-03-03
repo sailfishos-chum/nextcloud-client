@@ -1,0 +1,20 @@
+# 
+# this will build a package where:
+# - yaml+ spec file exist in rpm/
+# - source is part of the gitlab repo
+#
+# TO USE:
+#
+include:
+  - project: 'nephros/ci-templates'
+    file: '/sfos/sfos-build-git-local.yml'
+
+build-arm:
+  stage: build
+  extends: .build-bin
+  variables:
+    YAMLNAME: nextcloud-client.yaml
+    SPECNAME: nextcloud-client.spec
+    TARGET: "armv7hl"
+
+
