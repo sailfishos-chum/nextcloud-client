@@ -36,6 +36,7 @@ PkgBR:
   - qt5-qttools-linguist
   - qt5-qmake
   - libqtwebkit5-widgets-devel
+  - sailfish-components-webview-qt5-devel
   # librsvg-devel
   # qt5-qtwebsockets-devel
   # qt5keychain-devel
