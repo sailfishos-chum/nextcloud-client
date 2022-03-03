@@ -16,7 +16,7 @@ License:    GPLv2
 URL:        https://github.com/nextcloud/desktop
 Source0:    %{name}-%{version}.tar.gz
 Source100:  nextcloud-client.yaml
-BuildRequires:  pkgconfig(libssl)
+BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pkgconfig(zlib)
 BuildRequires:  pkgconfig(sqlite3)
 BuildRequires:  pkgconfig(Qt5Quick)
@@ -25,9 +25,6 @@ BuildRequires:  pkgconfig(Qt5Svg)
 BuildRequires:  pkgconfig
 BuildRequires:  qt5-qttools-linguist
 BuildRequires:  qt5-qmake
-BuildRequires:  librsvg-devel
-BuildRequires:  qt5-qtwebsockets-devel
-BuildRequires:  qt5keychain-devel
 BuildRequires:  desktop-file-utils
 
 %description

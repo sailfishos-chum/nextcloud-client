@@ -35,11 +35,11 @@ PkgBR:
   - pkgconfig
   - qt5-qttools-linguist
   - qt5-qmake
-  - librsvg-devel
-  - qt5-qtwebsockets-devel
-  - qt5keychain-devel
+  # librsvg-devel
+  # qt5-qtwebsockets-devel
+  # qt5keychain-devel
 PkgConfigBR:
-  - libssl
+  - openssl
   - zlib
   - sqlite3
   - Qt5Quick
