@@ -1,0 +1,67 @@
+Name: nextcloud-client
+Summary: Nextcloud command line tool
+Version: 3.4.3
+Release: 0
+Group: Applications
+License: GPLv2
+SCM: "https://github.com/nextcloud/desktop"
+URL: "https://github.com/nextcloud/desktop"
+Sources:
+    - '%{name}-%{version}.tar.gz'
+Description: |
+
+
+    %if "%{?vendor}" == "chum"
+    PackageName: Nextcloud Client
+    Type: console-application
+    PackagerName: nephros
+    Categories:
+     - Utility
+     - FileTools
+     - NetworkFilesystems
+    Custom:
+      Repo: https://github.com/nextcloud/desktop
+    Icon: https://avatars.githubusercontent.com/u/19211038?s=200&v=4
+    Url:
+      Homepage: https://nextcloud.com/install/#install-clients
+    %endif
+SetupOptions: -q -n %{name}-%{version}/upstream
+#Macros:
+#  - 'foo;bar'
+#Patches:
+#  - 'baz'
+#Requires:
+PkgBR:
+  - pkgconfig
+  - qt5-qttools-linguist
+  - qt5-qmake
+  - librsvg-devel
+  - qt5-qtwebsockets-devel
+  - qt5keychain-devel
+PkgConfigBR:
+  - libssl
+  - zlib
+  - sqlite3
+  - Qt5Quick
+  - Qt5Gui
+  - Qt5Svg
+
+Configure: cmake
+ConfigOptions:
+  - 'BUILD_SHELL_INTEGRATION=0'
+  - 'BUILD_SHELL_INTEGRATION_DOLPHIN=0'
+  - 'BUILD_SHELL_INTEGRATION_ICONS=0'
+  - 'BUILD_SHELL_INTEGRATION_NAUTILUS=0'
+  - 'NO_SHIBBOLETH=1'
+Builder: make
+NoIconCache: true
+#BuildArch: noarch
+#AutoSubPackages:
+#  - doc
+Files:
+  - '%license LICENSE'
+  - '%{_datadir}/applications/%{name}.desktop'
+  - '%{_datadir}/icons/*/*/apps/%{name}.png'
+  - '%{_datadir}/icons/*/*/apps/%{name}.svg'
+  - '%{_datadir}/%{name}/translations/*.qm'
+  - '%{_datadir}/%{name}/qml/*'
