@@ -9,7 +9,7 @@ Name:       nextcloud-client
 # << macros
 
 Summary:    Nextcloud command line tool
-Version:    3.4.3
+Version:    2.6.5
 Release:    0
 Group:      Applications
 License:    GPLv2
@@ -22,7 +22,6 @@ BuildRequires:  pkgconfig(sqlite3)
 BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  pkgconfig(Qt5Gui)
 BuildRequires:  pkgconfig(Qt5Svg)
-BuildRequires:  pkgconfig(Qt5Config)
 BuildRequires:  pkgconfig
 BuildRequires:  qt5-qttools-linguist
 BuildRequires:  qt5-qmake
