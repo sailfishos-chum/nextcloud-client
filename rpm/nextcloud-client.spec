@@ -37,6 +37,9 @@ BuildRequires:  qtkeychain-devel
 %description
 %{summary}.
 
+NOTE: The library installs in /usr/lib/nextcloud for compatability reasons with OwnCloud.
+This means you will have to have that path in your LD_LIBRARY_PATH variable to use the client.
+
 %if "%{?vendor}" == "chum"
 PackageName: Nextcloud Sync Client
 Type: console-application
@@ -51,6 +54,7 @@ Custom:
 Icon: https://avatars.githubusercontent.com/u/19211038?s=200&v=4
 Url:
   Homepage: https://nextcloud.com/install/#install-clients
+  Help: https://gitlab.com/nephros/nextcloud-client/-/blob/2.6.4+git2/README_SailfishOS.md
 %endif
 
 
