@@ -39,7 +39,7 @@ PkgBR:
   - sailfish-components-webview-qt5-devel
   # librsvg-devel
   # qt5-qtwebsockets-devel
-  - qt5keychain-devel
+  - qtkeychain-devel
 PkgConfigBR:
   - openssl
   - zlib
