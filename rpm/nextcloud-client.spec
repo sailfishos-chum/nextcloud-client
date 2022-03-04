@@ -100,7 +100,7 @@ Url:
 %patch1 -p1
 # >> setup
 %if %{sailfishos_version} < 40001
-%patch -p1 < %SOURCE1
+patch -p1 < %SOURCE1
 %endif
 # << setup
 
