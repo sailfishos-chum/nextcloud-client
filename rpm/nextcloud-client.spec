@@ -9,7 +9,7 @@ Name:       nextcloud-client
 # << macros
 
 Summary:    Nextcloud command line tool
-Version:    2.6.5
+Version:    2.6.4
 Release:    0
 Group:      Applications
 License:    GPLv2

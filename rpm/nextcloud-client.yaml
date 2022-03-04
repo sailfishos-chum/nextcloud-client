@@ -1,7 +1,8 @@
 Name: nextcloud-client
 Summary: Nextcloud command line tool
 # versions higher than this require Qt 5.12, current ones 5.15...
-Version: 2.6.5
+# .. or require WebEngine
+Version: 2.6.4
 Release: 0
 Group: Applications
 License: GPLv2
