@@ -2,7 +2,7 @@ Name: nextcloud-client
 Summary: Nextcloud command line sync client
 # versions higher than this require Qt 5.12, current ones 5.15...
 # .. or require WebEngine
-Version: 2.6.4
+Version: 2.6.5
 Release: 0
 Group: Applications
 License: GPLv2
@@ -34,7 +34,7 @@ SetupOptions: -q -n %{name}-%{version}/upstream
 Patches:
   - 'no-webengine.patch'
   # can not use {version} macro as OBS/tar_git mangles it...
-  - 'no-gui-2.6.4.patch'
+  - 'no-gui-2.6.5.patch'
 #Requires:
 PkgBR:
   - pkgconfig
