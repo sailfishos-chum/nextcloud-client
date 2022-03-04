@@ -45,7 +45,7 @@ PkgBR:
   - cmake
   - qt5-qttools-linguist
   - qt5-qmake
-  - qtkeychain-devel
+  - qt5keychain-devel
 PkgConfigBR:
   - 'openssl >= 1.1'
   - zlib

@@ -32,7 +32,7 @@ BuildRequires:  pkgconfig
 BuildRequires:  cmake
 BuildRequires:  qt5-qttools-linguist
 BuildRequires:  qt5-qmake
-BuildRequires:  qtkeychain-devel
+BuildRequires:  qt5keychain-devel
 
 %description
 %{summary}.
