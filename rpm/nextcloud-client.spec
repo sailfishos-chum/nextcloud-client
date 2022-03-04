@@ -129,7 +129,7 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 # >> files
 %license COPYING
-%{_sysconfdir}/Nextcloud/*
+%config %{_sysconfdir}/Nextcloud/*
 %{_bindir}/*
 # << files
 
