@@ -32,6 +32,7 @@ SetupOptions: -q -n %{name}-%{version}/upstream
 #  - 'foo;bar'
 Patches:
   - 'no-webengine.patch'
+  - 'no-updater.patch'
 #Requires:
 PkgBR:
   - pkgconfig
