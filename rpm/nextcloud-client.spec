@@ -17,8 +17,7 @@ URL:        https://github.com/nextcloud/desktop
 Source0:    %{name}-%{version}.tar.gz
 Source100:  nextcloud-client.yaml
 Patch0:     no-webengine.patch
-Patch1:     no-updater.patch
-Patch2:     no-gui.patch
+Patch1:     no-gui-2.6.4.patch
 BuildRequires:  pkgconfig(openssl) >= 1.1
 BuildRequires:  pkgconfig(zlib)
 BuildRequires:  pkgconfig(sqlite3)
@@ -92,10 +91,8 @@ Url:
 
 # no-webengine.patch
 %patch0 -p1
-# no-updater.patch
+# no-gui-2.6.4.patch
 %patch1 -p1
-# no-gui.patch
-%patch2 -p1
 # >> setup
 # << setup
 

@@ -33,8 +33,8 @@ SetupOptions: -q -n %{name}-%{version}/upstream
 #  - 'foo;bar'
 Patches:
   - 'no-webengine.patch'
-  - 'no-updater.patch'
-  - 'no-gui.patch'
+  # can not use {version} macro as OBS/tar_git mangles it...
+  - 'no-gui-2.6.4.patch'
 #Requires:
 PkgBR:
   - pkgconfig
