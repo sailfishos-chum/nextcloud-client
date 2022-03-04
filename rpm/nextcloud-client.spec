@@ -23,12 +23,12 @@ BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  pkgconfig(Qt5Gui)
 BuildRequires:  pkgconfig(Qt5Svg)
 BuildRequires:  pkgconfig(Qt5Xml)
+BuildRequires:  pkgconfig(Qt5Concurrent)
 BuildRequires:  pkgconfig(Qt5WebKitWidgets)
 BuildRequires:  pkgconfig
 BuildRequires:  cmake
 BuildRequires:  qt5-qttools-linguist
 BuildRequires:  qt5-qmake
-BuildRequires:  sailfish-components-webview-qt5-devel
 BuildRequires:  qtkeychain-devel
 BuildRequires:  desktop-file-utils
 
