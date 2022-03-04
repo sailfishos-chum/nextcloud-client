@@ -15,10 +15,11 @@ Group:      Applications
 License:    GPLv2
 URL:        https://github.com/nextcloud/desktop
 Source0:    %{name}-%{version}.tar.gz
+Source1:    libssl-1.0.patch
 Source100:  nextcloud-client.yaml
 Patch0:     no-webengine.patch
 Patch1:     no-gui-2.6.4.patch
-BuildRequires:  pkgconfig(openssl) >= 1.1
+BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pkgconfig(zlib)
 BuildRequires:  pkgconfig(sqlite3)
 BuildRequires:  pkgconfig(Qt5Quick)
@@ -98,6 +99,9 @@ Url:
 # no-gui-2.6.4.patch
 %patch1 -p1
 # >> setup
+%if %{sailfishos_version} < 40001
+%patch -p1 < %SOURCE1
+%endif
 # << setup
 
 %build

@@ -10,6 +10,8 @@ SCM: "https://github.com/nextcloud/desktop"
 URL: "https://github.com/nextcloud/desktop"
 Sources:
     - '%{name}-%{version}.tar.gz'
+    # for SFOS 3.x
+    - 'libssl-1.0.patch'
 Description: |
     %{summary}.
 
@@ -47,7 +49,7 @@ PkgBR:
   - qt5-qmake
   - qt5keychain-devel
 PkgConfigBR:
-  - 'openssl >= 1.1'
+  - openssl
   - zlib
   - sqlite3
   - Qt5Quick
