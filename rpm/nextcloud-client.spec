@@ -54,7 +54,7 @@ Custom:
 Icon: https://avatars.githubusercontent.com/u/19211038?s=200&v=4
 Url:
   Homepage: https://nextcloud.com/install/#install-clients
-  Help: https://gitlab.com/nephros/nextcloud-client/-/blob/2.6.4+git2/README_SailfishOS.md
+  Help: https://gitlab.com/nephros/nextcloud-client/-/blob/%{version}/README_SailfishOS.md
 %endif
 
 
