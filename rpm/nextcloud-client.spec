@@ -27,8 +27,8 @@ BuildRequires:  pkgconfig
 BuildRequires:  cmake
 BuildRequires:  qt5-qttools-linguist
 BuildRequires:  qt5-qmake
-BuildRequires:  libqtwebkit5-widgets-devel
 BuildRequires:  sailfish-components-webview-qt5-devel
+BuildRequires:  qt5keychain-devel
 BuildRequires:  desktop-file-utils
 
 %description
