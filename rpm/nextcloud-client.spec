@@ -8,7 +8,7 @@ Name:       nextcloud-client
 # >> macros
 # << macros
 
-Summary:    Nextcloud command line tool
+Summary:    Nextcloud command line sync client
 Version:    2.6.4
 Release:    0
 Group:      Applications
@@ -35,10 +35,10 @@ BuildRequires:  qt5-qmake
 BuildRequires:  qtkeychain-devel
 
 %description
-
+%{summary}.
 
 %if "%{?vendor}" == "chum"
-PackageName: Nextcloud Client
+PackageName: Nextcloud Sync Client
 Type: console-application
 PackagerName: nephros
 Categories:
@@ -47,6 +47,39 @@ Categories:
  - NetworkFilesystems
 Custom:
   Repo: https://github.com/nextcloud/desktop
+  PackagingRepo: https://gitlab.com/nephros/nextcloud-client
+Icon: https://avatars.githubusercontent.com/u/19211038?s=200&v=4
+Url:
+  Homepage: https://nextcloud.com/install/#install-clients
+%endif
+
+
+%package devel
+Summary:    Development files for %{name}
+Group:      Development/Libraries
+Requires:   %{name}-libs = %{version}-%{release}
+
+%description devel
+%{summary}.
+
+
+%package libs
+Summary:    Libraries for %{name}
+Group:      Development/Libraries
+Requires(post): /sbin/ldconfig
+Requires(postun): /sbin/ldconfig
+
+%description libs
+%{summary}.
+
+%if "%{?vendor}" == "chum"
+PackageName: Nextcloud Client Libraries
+PackagerName: nephros
+Categories:
+ - Library
+Custom:
+  Repo: https://github.com/nextcloud/desktop
+  PackagingRepo: https://gitlab.com/nephros/nextcloud-client
 Icon: https://avatars.githubusercontent.com/u/19211038?s=200&v=4
 Url:
   Homepage: https://nextcloud.com/install/#install-clients
@@ -84,17 +117,35 @@ make %{?_smp_mflags}
 %install
 rm -rf %{buildroot}
 # >> install pre
-lrelease -silent -removeidentical translations/*
 # << install pre
 %make_install
 
 # >> install post
 # << install post
 
+%post libs -p /sbin/ldconfig
+
+%postun libs -p /sbin/ldconfig
+
 %files
 %defattr(-,root,root,-)
-%license COPYING
-%{_bindir}/*
-%{_libdir}/*
 # >> files
+%license COPYING
+%{_sysconfdir}/Nextcloud/*
+%{_bindir}/*
 # << files
+
+%files devel
+%defattr(-,root,root,-)
+# >> files devel
+%{_includedir}/*
+%{_libdir}/*.so
+%{_libdir}/*/*.so
+# << files devel
+
+%files libs
+%defattr(-,root,root,-)
+# >> files libs
+%{_libdir}/*.so.*
+%{_libdir}/*/*.so.*
+# << files libs

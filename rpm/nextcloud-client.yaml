@@ -1,5 +1,5 @@
 Name: nextcloud-client
-Summary: Nextcloud command line tool
+Summary: Nextcloud command line sync client
 # versions higher than this require Qt 5.12, current ones 5.15...
 # .. or require WebEngine
 Version: 2.6.4
@@ -11,10 +11,10 @@ URL: "https://github.com/nextcloud/desktop"
 Sources:
     - '%{name}-%{version}.tar.gz'
 Description: |
-
+    %{summary}.
 
     %if "%{?vendor}" == "chum"
-    PackageName: Nextcloud Client
+    PackageName: Nextcloud Sync Client
     Type: console-application
     PackagerName: nephros
     Categories:
@@ -23,6 +23,7 @@ Description: |
      - NetworkFilesystems
     Custom:
       Repo: https://github.com/nextcloud/desktop
+      PackagingRepo: https://gitlab.com/nephros/nextcloud-client
     Icon: https://avatars.githubusercontent.com/u/19211038?s=200&v=4
     Url:
       Homepage: https://nextcloud.com/install/#install-clients
@@ -62,9 +63,33 @@ ConfigOptions:
 Builder: make
 NoIconCache: true
 #BuildArch: noarch
-#AutoSubPackages:
-#  - doc
-Files:
-  - '%license COPYING'
-  - '%{_bindir}/*'
-  - '%{_libdir}/*'
+
+SubPackages:
+    - Name:  devel
+      AutoDepend: false
+      Summary:    Development files for %{name}
+      Group:      Development/Libraries
+      Requires:
+        - '%{name}-libs = %{version}-%{release}'
+      Description: |
+          %{summary}.
+
+    - Name:  libs
+      AutoDepend: false
+      Summary:    Libraries for %{name}
+      Group:      Development/Libraries
+      Description: |
+          %{summary}.
+
+          %if "%{?vendor}" == "chum"
+          PackageName: Nextcloud Client Libraries
+          PackagerName: nephros
+          Categories:
+           - Library
+          Custom:
+            Repo: https://github.com/nextcloud/desktop
+            PackagingRepo: https://gitlab.com/nephros/nextcloud-client
+          Icon: https://avatars.githubusercontent.com/u/19211038?s=200&v=4
+          Url:
+            Homepage: https://nextcloud.com/install/#install-clients
+          %endif
