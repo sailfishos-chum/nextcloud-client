@@ -18,6 +18,7 @@ Source0:    %{name}-%{version}.tar.gz
 Source100:  nextcloud-client.yaml
 Patch0:     no-webengine.patch
 Patch1:     no-updater.patch
+Patch2:     no-gui.patch
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pkgconfig(zlib)
 BuildRequires:  pkgconfig(sqlite3)
@@ -61,6 +62,8 @@ Url:
 %patch0 -p1
 # no-updater.patch
 %patch1 -p1
+# no-gui.patch
+%patch2 -p1
 # >> setup
 # << setup
 
