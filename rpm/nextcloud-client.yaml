@@ -33,6 +33,7 @@ SetupOptions: -q -n %{name}-%{version}/upstream
 #Requires:
 PkgBR:
   - pkgconfig
+  - cmake
   - qt5-qttools-linguist
   - qt5-qmake
   - libqtwebkit5-widgets-devel
