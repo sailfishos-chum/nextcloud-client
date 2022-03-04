@@ -43,7 +43,7 @@ PkgBR:
   - qt5-qmake
   - qtkeychain-devel
 PkgConfigBR:
-  - openssl
+  - 'openssl >= 1.1'
   - zlib
   - sqlite3
   - Qt5Quick

@@ -19,7 +19,7 @@ Source100:  nextcloud-client.yaml
 Patch0:     no-webengine.patch
 Patch1:     no-updater.patch
 Patch2:     no-gui.patch
-BuildRequires:  pkgconfig(openssl)
+BuildRequires:  pkgconfig(openssl) >= 1.1
 BuildRequires:  pkgconfig(zlib)
 BuildRequires:  pkgconfig(sqlite3)
 BuildRequires:  pkgconfig(Qt5Quick)
