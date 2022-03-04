@@ -34,7 +34,6 @@ BuildRequires:  cmake
 BuildRequires:  qt5-qttools-linguist
 BuildRequires:  qt5-qmake
 BuildRequires:  qtkeychain-devel
-BuildRequires:  desktop-file-utils
 
 %description
 
@@ -91,35 +90,12 @@ lrelease -silent -removeidentical translations/*
 %make_install
 
 # >> install post
-
-%__install -m 644 -D %{name}.desktop %{buildroot}%{_datadir}/applications/%{name}.desktop
-%__install -m 644 -D qml/%{name}.qml %{buildroot}%{_datadir}/%{name}/qml/%{name}.qml
-#for f in qml/cover/*.qml qml/components/qmldir qml/components/*/*.qml qml/components/*.qml qml/pages/*.qml; do
-for f in $(find qml/ -type f -name "*.qml" -o -name qmldir -o -name "*.png"); do
-%__install -m 644 -D ${f} %{buildroot}%{_datadir}/%{name}/${f}
-done
-for f in translations/*.qm; do
-%__install -m 644 -D ${f} %{buildroot}%{_datadir}/%{name}/${f}
-done
-for s in 512 256 128 64 48; do
-%__install -m 644 -D icons/%{name}-${s}.png %{buildroot}%{_datadir}/icons/hicolor/${s}x${s}/apps/%{name}.png
-done
-# mangle version info
-sed -i -e "s/\(^.*version: \).*$/\1%{version}/" %{buildroot}%{_datadir}/%{name}/qml/components/AppInfoSingleton.qml
-sed -i -e "s/\(^.*release: \).*$/\1%{release}/" %{buildroot}%{_datadir}/%{name}/qml/components/AppInfoSingleton.qml
 # << install post
-
-desktop-file-install --delete-original       \
-  --dir %{buildroot}%{_datadir}/applications             \
-   %{buildroot}%{_datadir}/applications/*.desktop
 
 %files
 %defattr(-,root,root,-)
-%license LICENSE
-%{_datadir}/applications/%{name}.desktop
-%{_datadir}/icons/*/*/apps/%{name}.png
-%{_datadir}/icons/*/*/apps/%{name}.svg
-%{_datadir}/%{name}/translations/*.qm
-%{_datadir}/%{name}/qml/*
+%license COPYING
+%{_bindir}/*
+%{_libdir}/*
 # >> files
 # << files

@@ -68,9 +68,6 @@ NoIconCache: true
 #AutoSubPackages:
 #  - doc
 Files:
-  - '%license LICENSE'
-  - '%{_datadir}/applications/%{name}.desktop'
-  - '%{_datadir}/icons/*/*/apps/%{name}.png'
-  - '%{_datadir}/icons/*/*/apps/%{name}.svg'
-  - '%{_datadir}/%{name}/translations/*.qm'
-  - '%{_datadir}/%{name}/qml/*'
+  - '%license COPYING'
+  - '%{_bindir}/*'
+  - '%{_libdir}/*'
