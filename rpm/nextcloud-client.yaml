@@ -28,8 +28,8 @@ Description: |
 SetupOptions: -q -n %{name}-%{version}/upstream
 #Macros:
 #  - 'foo;bar'
-#Patches:
-#  - 'baz'
+Patches:
+  - 'not-webengine.patch'
 #Requires:
 PkgBR:
   - pkgconfig

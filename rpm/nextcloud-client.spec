@@ -16,6 +16,7 @@ License:    GPLv2
 URL:        https://github.com/nextcloud/desktop
 Source0:    %{name}-%{version}.tar.gz
 Source100:  nextcloud-client.yaml
+Patch0:     not-webengine.patch
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pkgconfig(zlib)
 BuildRequires:  pkgconfig(sqlite3)
@@ -54,6 +55,8 @@ Url:
 %prep
 %setup -q -n %{name}-%{version}/upstream
 
+# not-webengine.patch
+%patch0 -p1
 # >> setup
 # << setup
 
