@@ -30,7 +30,7 @@ SetupOptions: -q -n %{name}-%{version}/upstream
 #Macros:
 #  - 'foo;bar'
 Patches:
-  - 'not-webengine.patch'
+  - 'no-webengine.patch'
 #Requires:
 PkgBR:
   - pkgconfig
