@@ -1,5 +1,6 @@
 Name: nextcloud-client
 Summary: Nextcloud command line tool
+# versions higher than this require Qt 5.12, current ones 5.15...
 Version: 2.6.5
 Release: 0
 Group: Applications
@@ -47,6 +48,7 @@ PkgConfigBR:
   - Qt5Gui
   - Qt5Svg
   - Qt5Xml
+  - Qt5DBus
   - Qt5Concurrent
   - Qt5WebKitWidgets
 
