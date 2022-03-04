@@ -28,7 +28,6 @@ BuildRequires:  pkgconfig(Qt5Svg)
 BuildRequires:  pkgconfig(Qt5Xml)
 BuildRequires:  pkgconfig(Qt5DBus)
 BuildRequires:  pkgconfig(Qt5Concurrent)
-BuildRequires:  pkgconfig(Qt5WebKitWidgets)
 BuildRequires:  pkgconfig
 BuildRequires:  cmake
 BuildRequires:  qt5-qttools-linguist
