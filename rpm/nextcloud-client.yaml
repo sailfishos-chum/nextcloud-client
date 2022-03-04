@@ -18,6 +18,10 @@ Description: |
     NOTE: The library installs in /usr/lib/nextcloud for compatability reasons with OwnCloud.
     This means you will have to have that path in your LD_LIBRARY_PATH variable to use the client.
 
+    Also be aware that because of the old version of Qt used in Sailfish OS,
+    the version of this client is *old*.  There might be security and/or
+    compatability issues.
+
     %if "%{?vendor}" == "chum"
     PackageName: Nextcloud Sync Client
     Type: console-application
