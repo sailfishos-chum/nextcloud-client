@@ -41,8 +41,6 @@ PkgBR:
   - cmake
   - qt5-qttools-linguist
   - qt5-qmake
-  # librsvg-devel
-  # qt5-qtwebsockets-devel
   - qtkeychain-devel
 PkgConfigBR:
   - openssl
