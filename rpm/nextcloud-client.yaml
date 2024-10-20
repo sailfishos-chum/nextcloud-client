@@ -1,8 +1,6 @@
 Name: nextcloud-client
 Summary: Nextcloud command line sync client
-# versions higher than this require Qt 5.12, current ones 5.15...
-# .. or require WebEngine
-Version: 2.6.4
+Version: 3.10.2
 Release: 0
 Group: Applications
 License: GPLv2
@@ -12,22 +10,13 @@ Sources:
     - '%{name}-%{version}.tar.gz'
     # for SFOS 3.x
     - 'libssl-1.0.patch'
-Patches:
-  - 'no-webengine.patch'
-  # can not use {version} macro as OBS/tar_git mangles it...
-  - 'no-gui-2.6.4.patch'
 Description: |
     %{summary}.
 
-    NOTE: The library installs in /usr/lib/nextcloud for compatability reasons with OwnCloud.
-    This means you will have to have that path in your LD_LIBRARY_PATH variable to use the client.
-
-    Also be aware that because of the old version of Qt used in Sailfish OS,
-    the version of this client is *old*.  There might be security and/or
-    compatability issues.
+    This version is built using the Qt 5.15 packages from Chum
 
     %if "%{?vendor}" == "chum"
-    PackageName: Nextcloud Sync Client
+    PackageName: Nextcloud Sync Client V3
     Type: console-application
     PackagerName: nephros
     Categories:
@@ -43,41 +32,68 @@ Description: |
       Help: https://gitlab.com/nephros/nextcloud-client/-/blob/%{version}/README_SailfishOS.md
     %endif
 SetupOptions: -q -n %{name}-%{version}/upstream
-#Macros:
+Macros:
+  - |
+    ignore;this
+    BuildRequires: opt-qt5-qtbase-devel
+    BuildRequires: opt-qt5-qtbase-private-devel
+    BuildRequires: opt-qt5-qtdeclarative-devel
+    BuildRequires: opt-qt5-qtquickcontrols2-devel
+    BuildRequires: opt-qt5-qtsvg-devel
+    #BuildRequires: opt-qt5-qtxml-devel
+    BuildRequires: opt-qt5-qtxmlpatterns-devel
+    BuildRequires: opt-qt5-qtkeychain-devel
+    BuildRequires: opt-qt5-qtwebsockets-devel
+    # tools
+    BuildRequires: opt-qt5-linguist
+    BuildRequires: opt-qt5-qttools
+    BuildRequires: librsvg-tools
+    #KF5
+    BuildRequires: opt-kf5-karchive-devel
+    # Runtime deps:
+    %{?_opt_qt5:Requires: %{_opt_qt5}%{?_isa} = %{_opt_qt5_version}}
+    Requires: opt-qt5-qtbase    >= %{_opt_qt5_version}
+    Requires: opt-qt5-qtnetwork >= %{_opt_qt5_version}
 Macros2:
   - |
-    spectacle_hack_starts;here
-    # add a conditional dep:
-    %if 0%{?sailfishos_version} <= 40500
-    BuildRequires:  pkgconfig(Qt5WebKitWidgets)
-    %endif
-  - spectacle_hack_ends;here
+    ignore2;this
+    # filter qml provides
+    %global __provides_exclude_from ^%{_opt_qt5_archdatadir}/qml/.*\\.so$
+    %{?opt_qt5_default_filter}
 
+Patches:
+  - 'no-webengine.patch'
+  # can not use {version} macro as OBS/tar_git mangles it...
+  # 'no-gui-2.6.4.patch'
 #Requires:
 PkgBR:
   - pkgconfig
   - cmake
-  - qt5-qttools-linguist
-  - qt5-qmake
-  - qt5keychain-devel
+  # qt5-qttools-linguist
+  # qt5-qmake
+  # qt5keychain-devel
 PkgConfigBR:
   - openssl
   - zlib
   - sqlite3
-  - Qt5Quick
-  - Qt5Gui
-  - Qt5Svg
-  - Qt5Xml
-  - Qt5DBus
-  - Qt5Concurrent
+  #- Qt5Quick
+  #- Qt5Gui
+  #- Qt5Svg
+  #- Qt5Xml
+  #- Qt5DBus
+  #- Qt5Concurrent
+  #- Qt5WebKitWidgets
 
 Configure: cmake
 ConfigOptions:
+  - '-DCMAKE_PREFIX_PATH=%{_opt_qt5_prefix}'
+  - '-DBUILD_GUI=0'
+  - '-DBUILD_TESTING=OFF'
   - '-DBUILD_SHELL_INTEGRATION=0'
   - '-DBUILD_SHELL_INTEGRATION_DOLPHIN=0'
   - '-DBUILD_SHELL_INTEGRATION_ICONS=0'
   - '-DBUILD_SHELL_INTEGRATION_NAUTILUS=0'
-  - '-DNO_SHIBBOLETH=1'
+
 Builder: make
 NoIconCache: true
 #BuildArch: noarch
@@ -96,6 +112,12 @@ SubPackages:
       AutoDepend: false
       Summary:    Libraries for %{name}
       Group:      Development/Libraries
+      # Runtime requirements:
+      Requires:
+        - 'opt-qt5-qtbase       >= %{_opt_qt5_version}'
+        - 'opt-qt5-qtwebsockets >= %{_opt_qt5_version}'
+        - 'opt-qt5-qtkeychain   >= %{_opt_qt5_version}'
+        - 'opt-qt5-qtsvg        >= %{_opt_qt5_version}'
       Description: |
           %{summary}.
 

@@ -7,9 +7,29 @@ Name:       nextcloud-client
 
 # >> macros
 # << macros
+%define ignore this
+BuildRequires: opt-qt5-qtbase-devel
+BuildRequires: opt-qt5-qtbase-private-devel
+BuildRequires: opt-qt5-qtdeclarative-devel
+BuildRequires: opt-qt5-qtquickcontrols2-devel
+BuildRequires: opt-qt5-qtsvg-devel
+#BuildRequires: opt-qt5-qtxml-devel
+BuildRequires: opt-qt5-qtxmlpatterns-devel
+BuildRequires: opt-qt5-qtkeychain-devel
+BuildRequires: opt-qt5-qtwebsockets-devel
+# tools
+BuildRequires: opt-qt5-linguist
+BuildRequires: opt-qt5-qttools
+BuildRequires: librsvg-tools
+#KF5
+BuildRequires: opt-kf5-karchive-devel
+# Runtime deps:
+%{?_opt_qt5:Requires: %{_opt_qt5}%{?_isa} = %{_opt_qt5_version}}
+Requires: opt-qt5-qtbase    >= %{_opt_qt5_version}
+Requires: opt-qt5-qtnetwork >= %{_opt_qt5_version}
 
 Summary:    Nextcloud command line sync client
-Version:    2.6.4
+Version:    3.10.2
 Release:    0
 Group:      Applications
 License:    GPLv2
@@ -18,34 +38,19 @@ Source0:    %{name}-%{version}.tar.gz
 Source1:    libssl-1.0.patch
 Source100:  nextcloud-client.yaml
 Patch0:     no-webengine.patch
-Patch1:     no-gui-2.6.4.patch
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pkgconfig(zlib)
 BuildRequires:  pkgconfig(sqlite3)
-BuildRequires:  pkgconfig(Qt5Quick)
-BuildRequires:  pkgconfig(Qt5Gui)
-BuildRequires:  pkgconfig(Qt5Svg)
-BuildRequires:  pkgconfig(Qt5Xml)
-BuildRequires:  pkgconfig(Qt5DBus)
-BuildRequires:  pkgconfig(Qt5Concurrent)
 BuildRequires:  pkgconfig
 BuildRequires:  cmake
-BuildRequires:  qt5-qttools-linguist
-BuildRequires:  qt5-qmake
-BuildRequires:  qt5keychain-devel
 
 %description
 %{summary}.
 
-NOTE: The library installs in /usr/lib/nextcloud for compatability reasons with OwnCloud.
-This means you will have to have that path in your LD_LIBRARY_PATH variable to use the client.
-
-Also be aware that because of the old version of Qt used in Sailfish OS,
-the version of this client is *old*.  There might be security and/or
-compatability issues.
+This version is built using the Qt 5.15 packages from Chum
 
 %if "%{?vendor}" == "chum"
-PackageName: Nextcloud Sync Client
+PackageName: Nextcloud Sync Client V3
 Type: console-application
 PackagerName: nephros
 Categories:
@@ -74,6 +79,10 @@ Requires:   %{name}-libs = %{version}-%{release}
 %package libs
 Summary:    Libraries for %{name}
 Group:      Development/Libraries
+Requires:   opt-qt5-qtbase       >= %{_opt_qt5_version}
+Requires:   opt-qt5-qtwebsockets >= %{_opt_qt5_version}
+Requires:   opt-qt5-qtkeychain   >= %{_opt_qt5_version}
+Requires:   opt-qt5-qtsvg        >= %{_opt_qt5_version}
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 
@@ -94,20 +103,16 @@ Url:
 %endif
 
 
-%define spectacle_hack_starts here
-# add a conditional dep:
-%if 0%{?sailfishos_version} <= 40500
-BuildRequires:  pkgconfig(Qt5WebKitWidgets)
-%endif
-%define spectacle_hack_ends here
+%define ignore2 this
+# filter qml provides
+%global __provides_exclude_from ^%{_opt_qt5_archdatadir}/qml/.*\\.so$
+%{?opt_qt5_default_filter}
 
 %prep
 %setup -q -n %{name}-%{version}/upstream
 
 # no-webengine.patch
 %patch0 -p1
-# no-gui-2.6.4.patch
-%patch1 -p1
 # >> setup
 %if %{sailfishos_version} < 40001
 patch -p1 < %SOURCE1
@@ -116,14 +121,18 @@ patch -p1 < %SOURCE1
 
 %build
 # >> build pre
+export QTDIR=%{_opt_qt5_prefix}
+export CMAKE_PREFIX_PATH=%{_opt_qt5_prefix}
 # << build pre
 
 %cmake .  \
+    -DCMAKE_PREFIX_PATH=%{_opt_qt5_prefix} \
+    -DBUILD_GUI=0 \
+    -DBUILD_TESTING=OFF \
     -DBUILD_SHELL_INTEGRATION=0 \
     -DBUILD_SHELL_INTEGRATION_DOLPHIN=0 \
     -DBUILD_SHELL_INTEGRATION_ICONS=0 \
-    -DBUILD_SHELL_INTEGRATION_NAUTILUS=0 \
-    -DNO_SHIBBOLETH=1
+    -DBUILD_SHELL_INTEGRATION_NAUTILUS=0
 
 make %{?_smp_mflags}
 
@@ -156,12 +165,12 @@ rm -rf %{buildroot}
 # >> files devel
 %{_includedir}/*
 %{_libdir}/*.so
-%{_libdir}/*/*.so
+#%%{_libdir}/*/*.so
 # << files devel
 
 %files libs
 %defattr(-,root,root,-)
 # >> files libs
 %{_libdir}/*.so.*
-%{_libdir}/*/*.so.*
+#%%{_libdir}/*/*.so.*
 # << files libs
