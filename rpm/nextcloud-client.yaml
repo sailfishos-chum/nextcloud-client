@@ -1,0 +1,113 @@
+Name: nextcloud-client
+Summary: Nextcloud command line sync client
+# versions higher than this require Qt 5.12, current ones 5.15...
+# .. or require WebEngine
+Version: 2.6.4
+Release: 0
+Group: Applications
+License: GPLv2
+SCM: "https://github.com/nextcloud/desktop"
+URL: "https://github.com/nextcloud/desktop"
+Sources:
+    - '%{name}-%{version}.tar.gz'
+    # for SFOS 3.x
+    - 'libssl-1.0.patch'
+Patches:
+  - 'no-webengine.patch'
+  # can not use {version} macro as OBS/tar_git mangles it...
+  - 'no-gui-2.6.4.patch'
+Description: |
+    %{summary}.
+
+    NOTE: The library installs in /usr/lib/nextcloud for compatability reasons with OwnCloud.
+    This means you will have to have that path in your LD_LIBRARY_PATH variable to use the client.
+
+    Also be aware that because of the old version of Qt used in Sailfish OS,
+    the version of this client is *old*.  There might be security and/or
+    compatability issues.
+
+    %if "%{?vendor}" == "chum"
+    PackageName: Nextcloud Sync Client
+    Type: console-application
+    PackagerName: nephros
+    Categories:
+     - Utility
+     - FileTools
+     - NetworkFilesystems
+    Custom:
+      Repo: https://github.com/nextcloud/desktop
+      PackagingRepo: https://gitlab.com/nephros/nextcloud-client
+    Icon: https://avatars.githubusercontent.com/u/19211038?s=200&v=4
+    Url:
+      Homepage: https://nextcloud.com/install/#install-clients
+      Help: https://gitlab.com/nephros/nextcloud-client/-/blob/%{version}/README_SailfishOS.md
+    %endif
+SetupOptions: -q -n %{name}-%{version}/upstream
+#Macros:
+Macros2:
+  - |
+    spectacle_hack_starts;here
+    # add a conditional dep:
+    %if 0%{?sailfishos_version} <= 40500
+    BuildRequires:  pkgconfig(Qt5WebKitWidgets)
+    %endif
+  - spectacle_hack_ends;here
+
+#Requires:
+PkgBR:
+  - pkgconfig
+  - cmake
+  - qt5-qttools-linguist
+  - qt5-qmake
+  - qt5keychain-devel
+PkgConfigBR:
+  - openssl
+  - zlib
+  - sqlite3
+  - Qt5Quick
+  - Qt5Gui
+  - Qt5Svg
+  - Qt5Xml
+  - Qt5DBus
+  - Qt5Concurrent
+
+Configure: cmake
+ConfigOptions:
+  - '-DBUILD_SHELL_INTEGRATION=0'
+  - '-DBUILD_SHELL_INTEGRATION_DOLPHIN=0'
+  - '-DBUILD_SHELL_INTEGRATION_ICONS=0'
+  - '-DBUILD_SHELL_INTEGRATION_NAUTILUS=0'
+  - '-DNO_SHIBBOLETH=1'
+Builder: make
+NoIconCache: true
+#BuildArch: noarch
+
+SubPackages:
+    - Name:  devel
+      AutoDepend: false
+      Summary:    Development files for %{name}
+      Group:      Development/Libraries
+      Requires:
+        - '%{name}-libs = %{version}-%{release}'
+      Description: |
+          %{summary}.
+
+    - Name:  libs
+      AutoDepend: false
+      Summary:    Libraries for %{name}
+      Group:      Development/Libraries
+      Description: |
+          %{summary}.
+
+          %if "%{?vendor}" == "chum"
+          PackageName: Nextcloud Client Libraries
+          PackagerName: nephros
+          Categories:
+           - Library
+          Custom:
+            Repo: https://github.com/nextcloud/desktop
+            PackagingRepo: https://gitlab.com/nephros/nextcloud-client
+          Icon: https://avatars.githubusercontent.com/u/19211038?s=200&v=4
+          Url:
+            Homepage: https://nextcloud.com/install/#install-clients
+          %endif

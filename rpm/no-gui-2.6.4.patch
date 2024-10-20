@@ -1,0 +1,22 @@
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 9f854b006..c5e64cac5 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -52,7 +52,6 @@ include_directories(
+ add_subdirectory(csync)
+ add_subdirectory(libsync)
+ if (NOT BUILD_LIBRARIES_ONLY)
+-    add_subdirectory(gui)
+     add_subdirectory(cmd)
+ 
+     if (WITH_CRASHREPORTER)
+@@ -68,9 +67,6 @@ if(KRAZY2_EXECUTABLE)
+                        ${PROJECT_SOURCE_DIR}/src/libsync/*.ui
+                        ${PROJECT_SOURCE_DIR}/src/libsync/*.h
+                        ${PROJECT_SOURCE_DIR}/src/libsync/*.cpp
+-                       ${PROJECT_SOURCE_DIR}/src/gui/*.ui
+-                       ${PROJECT_SOURCE_DIR}/src/gui/*.h
+-                       ${PROJECT_SOURCE_DIR}/src/gui/*.cpp
+                        ${PROJECT_SOURCE_DIR}/src/cmd/*.h
+                        ${PROJECT_SOURCE_DIR}/src/cmd/*.cpp
+ )
