@@ -29,7 +29,7 @@ Requires: opt-qt5-qtbase    >= %{_opt_qt5_version}
 Requires: opt-qt5-qtnetwork >= %{_opt_qt5_version}
 
 Summary:    Nextcloud command line sync client
-Version:    3.10.2
+Version:    3.10.4
 Release:    0
 Group:      Applications
 License:    GPLv2
@@ -134,7 +134,7 @@ export CMAKE_PREFIX_PATH=%{_opt_qt5_prefix}
     -DBUILD_SHELL_INTEGRATION_ICONS=0 \
     -DBUILD_SHELL_INTEGRATION_NAUTILUS=0
 
-make %{?_smp_mflags}
+%make_build
 
 # >> build post
 # << build post
