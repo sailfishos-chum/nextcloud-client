@@ -1,8 +1,7 @@
 Name: nextcloud-client
 Summary: Nextcloud command line sync client
-Version: 3.14.1
+Version: 3.14.3
 Release: 0
-Group: Applications
 License: GPLv2
 SCM: "https://github.com/nextcloud/desktop"
 URL: "https://github.com/nextcloud/desktop"
@@ -17,7 +16,7 @@ Description: |
     NOTE: The library installs in /usr/lib/nextcloud for compatability reasons with OwnCloud.
     This means you will have to have that path in your LD_LIBRARY_PATH variable to use the client.
 
-    %if "%{?vendor}" == "chum"
+    %if 0%{?_chum}
     Title: Nextcloud Sync Client (Qt6)
     Type: console-application
     PackagedBy: nephros
@@ -93,7 +92,6 @@ SubPackages:
     - Name:  devel
       AutoDepend: false
       Summary:    Development files for %{name}
-      Group:      Development/Libraries
       Requires:
         - '%{name}-libs = %{version}-%{release}'
       Description: |
@@ -107,11 +105,10 @@ SubPackages:
     - Name:  libs
       AutoDepend: false
       Summary:    Libraries for %{name}
-      Group:      Development/Libraries
       Description: |
           %{summary}.
 
-          %if "%{?vendor}" == "chum"
+          %if 0%{?_chum}
           Title: Nextcloud Client Libraries
           PackagedBy: nephros
           Categories:
