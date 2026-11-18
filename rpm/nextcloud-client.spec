@@ -17,6 +17,7 @@ Source0:    %{name}-%{version}.tar.gz
 Source1:    libssl-1.0.patch
 Source100:  nextcloud-client.yaml
 BuildRequires:  pkgconfig(openssl)
+BuildRequires:  pkgconfig(libp11)
 BuildRequires:  pkgconfig(zlib)
 BuildRequires:  pkgconfig(sqlite3)
 BuildRequires:  pkgconfig(Qt6Concurrent)

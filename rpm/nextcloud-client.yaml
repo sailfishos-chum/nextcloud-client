@@ -53,6 +53,7 @@ PkgBR:
   - kf6-karchive-devel
 PkgConfigBR:
   - openssl
+  - libp11
   - zlib
   - sqlite3
   - Qt6Concurrent
