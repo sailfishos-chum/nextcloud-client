@@ -33,6 +33,7 @@ BuildRequires:  pkgconfig(Qt6WebSockets)
 BuildRequires:  pkgconfig(Qt6Xml)
 BuildRequires:  pkgconfig
 BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules >= 6.0.0
 BuildRequires:  qt6-qtkeychain-devel
 BuildRequires:  qt6-rpm-macros
 BuildRequires:  qt6-qttools

@@ -47,6 +47,7 @@ Macros2:
 PkgBR:
   - pkgconfig
   - cmake
+  - extra-cmake-modules >= 6.0.0
   - qt6-qtkeychain-devel
   - qt6-rpm-macros
   - qt6-qttools
