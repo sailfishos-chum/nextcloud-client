@@ -83,6 +83,7 @@ ConfigOptions:
   - '-DBUILD_UPDATER=OFF'
   - '-DBUILD_TESTING=OFF'
   - '-DBUILD_WITH_WEBENGINE=OFF'
+  - '-DNO_MSG_HANDLER=ON'
 Builder: none
 NoIconCache: true
 Files:
