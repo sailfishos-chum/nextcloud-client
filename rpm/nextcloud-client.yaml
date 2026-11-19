@@ -102,7 +102,7 @@ SubPackages:
         - '%license COPYING'
         - '%{_includedir}/nextcloudsync/'
         # '%{_libdir}/*.so'
-        - '%{_libdir}/nextcloud/*.so'
+        - '%{_libdir}/nextcloud/lib*.so'
 
     - Name:  libs
       AutoDepend: false
@@ -124,5 +124,6 @@ SubPackages:
           %endif
       Files:
         # '%{_libdir}/*.so.*'
-        - '%{_libdir}/nextcloud/*.so.*'
+        - '%{_libdir}/nextcloud/lib*.so.*'
+        - '%{_libdir}/nextcloud/nextcloudsync_vfs_*.so'
 
