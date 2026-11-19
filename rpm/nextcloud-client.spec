@@ -96,7 +96,7 @@ Links:
 %endif
 
 %prep
-%setup -a 1 -n %{name}-%{version}
+%setup -q -a 1 -n %{name}-%{version}
 
 pushd %{packagesrc}
 %patch0 -p1
