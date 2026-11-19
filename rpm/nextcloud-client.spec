@@ -146,11 +146,12 @@ patch -p1 < %SOURCE1
 %files devel
 %license COPYING
 %{_includedir}/nextcloudsync/
-%{_libdir}/nextcloud/*.so
+%{_libdir}/nextcloud/lib*.so
 # >> files devel
 # << files devel
 
 %files libs
-%{_libdir}/nextcloud/*.so.*
+%{_libdir}/nextcloud/lib*.so.*
+%{_libdir}/nextcloud/nextcloudsync_vfs_*.so
 # >> files libs
 # << files libs
