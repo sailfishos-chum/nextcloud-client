@@ -146,8 +146,9 @@ popd
 
 %files devel
 %{_includedir}/*
-%{_libdir}/*/lib*.so
+%{_libdir}/*.so
+%{_libdir}/*/*.so
 
 %files libs
-%{_libdir}/*/lib*.so.*
-%{_libdir}/*/nextcloudsync_vfs_*.so
+%{_libdir}/*.so.*
+%{_libdir}/*/*.so.*
