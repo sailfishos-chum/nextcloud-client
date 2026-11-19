@@ -9,7 +9,7 @@ Name:       nextcloud-client
 # << macros
 
 Summary:    Nextcloud command line sync client
-Version:    35.0.3
+Version:    6.2.0
 Release:    0
 License:    GPLv2
 URL:        https://github.com/nextcloud/desktop
