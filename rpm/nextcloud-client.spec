@@ -1,13 +1,17 @@
 Name:       qt56-nextcloud-client
+
+%global     packagever 2.6.5
+%global     packagesrc desktop-%{packagever}
+
 Summary:    Nextcloud command line sync client
 Version:    2.6.5
 Release:    0
 License:    GPLv2
 URL:        https://github.com/nextcloud/desktop
 Source0:    %{name}-%{version}.tar.gz
-Source1:    desktop-2.6.5.tar.gz
+Source1:    %{packagesrc}.tar.gz
 Patch0:     no-webengine.patch
-Patch1:     no-gui-2.6.5.patch
+Patch1:     no-gui-%{packagever}.patch
 Patch2:     libssl-1.0.patch
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pkgconfig(zlib)
@@ -94,7 +98,7 @@ Links:
 %prep
 %setup -a 1 -n %{name}-%{version}
 
-pushd desktop-2.6.5
+pushd %{packagesrc}
 %patch0 -p1
 %patch1 -p1
 %if 0%{?sailfishos_version} < 40001
@@ -103,6 +107,7 @@ pushd desktop-2.6.5
 popd
 
 %build
+pushd %{packagesrc}
 %cmake .  \
     -DBUILD_SHELL_INTEGRATION=0 \
     -DBUILD_SHELL_INTEGRATION_DOLPHIN=0 \
@@ -111,9 +116,12 @@ popd
     -DNO_SHIBBOLETH=1
 
 %make_build
+popd
 
 %install
+pushd %{packagesrc}
 %make_install
+popd
 
 %post libs -p /sbin/ldconfig
 
