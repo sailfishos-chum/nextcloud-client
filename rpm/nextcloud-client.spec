@@ -15,7 +15,8 @@ Source0:    %{name}-%{version}.tar.gz
 Source1:    %{packagesrc}.tar.gz
 Patch0:     no-webengine.patch
 Patch1:     no-gui-%{packagever}.patch
-Patch2:     libssl-1.0.patch
+Patch2:     qasconst.patch
+Patch3:     libssl-1.0.patch
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pkgconfig(zlib)
 BuildRequires:  pkgconfig(sqlite3)
@@ -106,8 +107,9 @@ Links:
 pushd %{packagesrc}
 %patch0 -p1
 %patch1 -p1
-%if 0%{?sailfishos_version} < 40001
 %patch2 -p1
+%if 0%{?sailfishos_version} < 40001
+%patch3 -p1
 %endif
 popd
 
