@@ -10,6 +10,8 @@ SCM: "https://github.com/nextcloud/desktop"
 URL: "https://github.com/nextcloud/desktop"
 Sources:
     - '%{name}-%{version}.tar.gz'
+    # can not use {version} macro as OBS/tar_git mangles it...
+    - 'desktop-2.6.5.tar.gz'
     # for SFOS 3.x
     - 'libssl-1.0.patch'
 Patches:
@@ -42,8 +44,7 @@ Description: |
       Homepage: https://nextcloud.com/install/#install-clients
       Help: https://github.com/sailfishos-chum/nextcloud-client/-/blob/%{version}/README_SailfishOS.md
     %endif
-SetupOptions: -q -n %{name}-%{version}
-#SetupOptions: -q -n %{name}-%{version}/upstream
+SetupOptions: -a 1 -n %{name}-%{version}
 #Macros:
 Macros2:
   - |

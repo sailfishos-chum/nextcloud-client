@@ -14,7 +14,8 @@ Release:    0
 License:    GPLv2
 URL:        https://github.com/nextcloud/desktop
 Source0:    %{name}-%{version}.tar.gz
-Source1:    libssl-1.0.patch
+Source1:    desktop-2.6.5.tar.gz
+Source2:    libssl-1.0.patch
 Source100:  nextcloud-client.yaml
 Patch0:     no-webengine.patch
 Patch1:     no-gui-2.6.4.patch
@@ -101,7 +102,7 @@ BuildRequires:  pkgconfig(Qt5WebKitWidgets)
 %define spectacle_hack_ends here
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -a 1 -n %{name}-%{version}
 
 # no-webengine.patch
 %patch0 -p1
@@ -109,7 +110,7 @@ BuildRequires:  pkgconfig(Qt5WebKitWidgets)
 %patch1 -p1
 # >> setup
 %if %{sailfishos_version} < 40001
-patch -p1 < %SOURCE1
+patch -p1 < %SOURCE2
 %endif
 # << setup
 
