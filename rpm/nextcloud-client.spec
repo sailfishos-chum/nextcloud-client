@@ -118,8 +118,7 @@ pushd %{packagesrc}
     -DTOKEN_AUTH_ONLY=ON \
     -DWITH_PROVIDERS=OFF \
     -DNO_SHIBBOLETH=ON \
-    -DQTKEYCHAIN_INCLUDE_DIR=/usr/include/qt5keychain \
-    -DQTKEYCHAIN_LIBRARY=%{_libdir}/libqt5keychain.so \
+    -DCMAKE_CXX_FLAGS="${CXXFLAGS} -I/usr/include/qt5keychain" \
     %{nil}
 
 %make_build
