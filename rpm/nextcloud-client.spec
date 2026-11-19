@@ -7,7 +7,7 @@ URL:        https://github.com/nextcloud/desktop
 Source0:    %{name}-%{version}.tar.gz
 Source1:    desktop-2.6.5.tar.gz
 Patch0:     no-webengine.patch
-Patch1:     no-gui-2.6.4.patch
+Patch1:     no-gui-2.6.5.patch
 Patch2:     libssl-1.0.patch
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pkgconfig(zlib)
