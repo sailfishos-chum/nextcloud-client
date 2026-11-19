@@ -1,13 +1,10 @@
 Name:       qt56-nextcloud-client
 
-%global     packagever 2.6.4
+%global     packagever 2.6.5
 %global     packagesrc desktop-%{packagever}
 
 Summary:    Nextcloud command line sync client
-# Note that there is a 2.6.5 tag, but it uses all kinds of Gui and Widget stuff
-# also in the cli client.
-# See qt56-2.6.5 branch for failed attempts to use that.
-Version:    2.6.4
+Version:    2.6.5
 Release:    0
 License:    GPLv2
 URL:        https://github.com/nextcloud/desktop
