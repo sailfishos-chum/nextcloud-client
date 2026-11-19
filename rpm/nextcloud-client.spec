@@ -53,11 +53,11 @@ Categories:
  - NetworkFilesystems
 Custom:
   Repo: https://github.com/nextcloud/desktop
-  PackagingRepo: https://gitlab.com/nephros/nextcloud-client
+  PackagingRepo: https://github.com/sailfishos-chum/nextcloud-client
 Icon: https://avatars.githubusercontent.com/u/19211038?s=200&v=4
 Url:
   Homepage: https://nextcloud.com/install/#install-clients
-  Help: https://gitlab.com/nephros/nextcloud-client/-/blob/%{version}/README_SailfishOS.md
+  Help: https://github.com/sailfishos-chum/nextcloud-client/-/blob/%{version}/README_SailfishOS.md
 %endif
 
 
@@ -86,7 +86,7 @@ Categories:
  - Library
 Custom:
   Repo: https://github.com/nextcloud/desktop
-  PackagingRepo: https://gitlab.com/nephros/nextcloud-client
+  PackagingRepo: https://github.com/sailfishos-chum/nextcloud-client
 Icon: https://avatars.githubusercontent.com/u/19211038?s=200&v=4
 Url:
   Homepage: https://nextcloud.com/install/#install-clients
@@ -101,7 +101,7 @@ BuildRequires:  pkgconfig(Qt5WebKitWidgets)
 %define spectacle_hack_ends here
 
 %prep
-%setup -q -n %{name}-%{version}/upstream
+%setup -q -n %{name}-%{version}
 
 # no-webengine.patch
 %patch0 -p1
