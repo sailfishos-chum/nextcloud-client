@@ -1,6 +1,6 @@
 Name: nextcloud-client
 Summary: Nextcloud command line sync client
-Version: 6.2.0
+Version: 35.0.3
 Release: 0
 License: GPLv2
 SCM: "https://github.com/nextcloud/desktop"
