@@ -1,0 +1,12 @@
+--- a/src/libsync/syncengine.cpp	2020-07-10 01:50:49.000000000 +0200
++++ b/src/libsync/syncengine.cpp	2026-11-19 12:09:32.977276621 +0100
+@@ -326,6 +326,9 @@
+     _journal->deleteStaleErrorBlacklistEntries(blacklist_file_paths);
+ }
+ 
++template <typename T>
++constexpr typename std::add_const<T>::type &qAsConst(T &t) noexcept { return t; }
++
+ void SyncEngine::conflictRecordMaintenance()
+ {
+     // Remove stale conflict entries from the database
