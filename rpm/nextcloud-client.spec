@@ -29,7 +29,7 @@ Requires: opt-qt5-qtbase    >= %{_opt_qt5_version}
 Requires: opt-qt5-qtnetwork >= %{_opt_qt5_version}
 
 Summary:    Nextcloud command line sync client
-Version:    3.11.2
+Version:    3.12.9
 Release:    0
 License:    GPLv2
 URL:        https://github.com/nextcloud/desktop
