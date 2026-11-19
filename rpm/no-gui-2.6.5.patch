@@ -1,5 +1,6 @@
---- a/src/CMakeLists.txt	2026-11-19 10:01:48.469547134 +0100
-+++ b/src/CMakeLists.txt	2026-11-19 10:02:41.120975851 +0100
+diff -Naur a/src/CMakeLists.txt b/src/CMakeLists.txt
+--- a/src/CMakeLists.txt	2020-07-10 01:50:49.000000000 +0200
++++ b/src/CMakeLists.txt	2026-11-19 11:58:18.900987374 +0100
 @@ -53,7 +53,6 @@
  add_subdirectory(libsync)
  if (NOT BUILD_LIBRARIES_ONLY)
@@ -18,3 +19,17 @@
                         ${PROJECT_SOURCE_DIR}/src/cmd/*.h
                         ${PROJECT_SOURCE_DIR}/src/cmd/*.cpp
  )
+diff -Naur a/src/libsync/networkjobs.cpp b/src/libsync/networkjobs.cpp
+--- a/src/libsync/networkjobs.cpp	2020-07-10 01:50:49.000000000 +0200
++++ b/src/libsync/networkjobs.cpp	2026-11-19 11:59:27.941016999 +0100
+@@ -30,8 +30,10 @@
+ #include <QCoreApplication>
+ #include <QJsonDocument>
+ #include <QJsonObject>
++#ifndef TOKEN_AUTH_ONLY
+ #include <QPainter>
+ #include <QPainterPath>
++#endif
+ 
+ #include "networkjobs.h"
+ #include "account.h"
