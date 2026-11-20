@@ -6,7 +6,6 @@ Release:    0
 License:    GPLv2
 URL:        https://github.com/nextcloud/desktop
 Source0:    %{name}-%{version}.tar.gz
-Source1:    libssl-1.0.patch
 Patch0:     no-webengine.patch
 
 BuildRequires:  pkgconfig(openssl)
@@ -109,9 +108,6 @@ Url:
 
 # no-webengine.patch
 %patch0 -p1
-%if 0%{?sailfishos_version} < 40001
-patch -p1 < %SOURCE1
-%endif
 
 %build
 export QTDIR=%{_opt_qt5_prefix}
