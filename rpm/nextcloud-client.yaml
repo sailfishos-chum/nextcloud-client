@@ -125,5 +125,24 @@ SubPackages:
       Files:
         # '%{_libdir}/*.so.*'
         - '%{_libdir}/nextcloud/lib*.so.*'
+    - Name:  vfs-plugin
+      AutoDepend: false
+      Summary:    Plugins for %{name}
+      Description: |
+          %{summary}.
+
+          %if 0%{?_chum}
+          Title: Nextcloud VFS Plugins
+          PackagedBy: nephros
+          Categories:
+           - Library
+          Custom:
+            Repo: https://github.com/nextcloud/desktop
+            PackagingRepo: https://gitlab.com/nephros/nextcloud-client
+          Icon: https://avatars.githubusercontent.com/u/19211038?s=200&v=4
+          Url:
+            Homepage: https://nextcloud.com/install/#install-clients
+          %endif
+      Files:
         - '%{_libdir}/nextcloud/nextcloudsync_vfs_*.so'
 

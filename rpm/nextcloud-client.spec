@@ -89,6 +89,26 @@ Url:
 %endif
 
 
+%package vfs-plugin
+Summary:    Plugins for %{name}
+
+%description vfs-plugin
+%{summary}.
+
+%if 0%{?_chum}
+Title: Nextcloud VFS Plugins
+PackagedBy: nephros
+Categories:
+ - Library
+Custom:
+  Repo: https://github.com/nextcloud/desktop
+  PackagingRepo: https://gitlab.com/nephros/nextcloud-client
+Icon: https://avatars.githubusercontent.com/u/19211038?s=200&v=4
+Url:
+  Homepage: https://nextcloud.com/install/#install-clients
+%endif
+
+
 %define spectacle_hack_starts here
 # add a conditional dep:
 %if 0%{?sailfishos_version} <= 40500
@@ -150,6 +170,10 @@ patch -p1 < %SOURCE1
 
 %files libs
 %{_libdir}/nextcloud/lib*.so.*
-%{_libdir}/nextcloud/nextcloudsync_vfs_*.so
 # >> files libs
 # << files libs
+
+%files vfs-plugin
+%{_libdir}/nextcloud/nextcloudsync_vfs_*.so
+# >> files vfs-plugin
+# << files vfs-plugin
