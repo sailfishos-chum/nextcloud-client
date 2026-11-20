@@ -1,13 +1,13 @@
 diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
-index a4d06844a..fdcf1a981 100644
+index cf1e13032f..30b256c946 100644
 --- a/src/CMakeLists.txt
 +++ b/src/CMakeLists.txt
-@@ -30,35 +30,7 @@ set_package_properties(Qt5Concurrent PROPERTIES
+@@ -32,35 +32,7 @@ set_package_properties(Qt5QuickWidgets PROPERTIES
      TYPE REQUIRED
  )
  
 -find_package(Qt5WebEngineWidgets ${REQUIRED_QT_VERSION} CONFIG QUIET)
--if(APPLE)
+-if(NOT BUILD_WITH_WEBENGINE)
 -    set_package_properties(Qt5WebEngineWidgets PROPERTIES
 -        DESCRIPTION "Qt5 WebEngineWidgets component."
 -        TYPE RECOMMENDED
@@ -20,7 +20,7 @@ index a4d06844a..fdcf1a981 100644
 -endif()
 -
 -find_package(Qt5WebEngine ${REQUIRED_QT_VERSION} CONFIG QUIET)
--if(APPLE)
+-if(NOT BUILD_WITH_WEBENGINE)
 -    set_package_properties(Qt5WebEngine PROPERTIES
 -        DESCRIPTION "Qt5 WebEngine component."
 -        TYPE RECOMMENDED
@@ -32,10 +32,10 @@ index a4d06844a..fdcf1a981 100644
 -    )
 -endif()
 -
--if(Qt5WebEngine_FOUND AND Qt5WebEngineWidgets_FOUND)
+-if(BUILD_WITH_WEBENGINE AND Qt5WebEngine_FOUND AND Qt5WebEngineWidgets_FOUND)
 -  add_compile_definitions(WITH_WEBENGINE=1)
 -endif()
-+add_compile_definitions(WITH_WEBENGINE=0)
++add_compile_definitions(WITH_WEBENGINE=1)
  
  get_target_property (QT_QMAKE_EXECUTABLE Qt5::qmake IMPORTED_LOCATION)
  message(STATUS "Using Qt ${Qt5Core_VERSION} (${QT_QMAKE_EXECUTABLE})")
