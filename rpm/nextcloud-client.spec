@@ -115,7 +115,6 @@ export CMAKE_PREFIX_PATH=%{_opt_qt5_prefix}
 
 %cmake .  \
     -DCMAKE_PREFIX_PATH=%{_opt_qt5_prefix} \
-    -DCMAKE_INSTALL_LIBDIR=%{_libdir}/nextcloud \
     -DTOKEN_AUTH_ONLY=OFF \
     -DBUILD_SHELL_INTEGRATION=OFF \
     -DBUILD_SHELL_INTEGRATION_ICONS=OFF \
